@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lynxby"
+version = "1.0.0"
+description = "The Lynxby API client: assistants, tasks and runs, with server-sent events and retries."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = []
+keywords = ["lynxby", "sdk", "assistants", "sse"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+[project.urls]
+Homepage = "https://github.com/s-t-dev/lynxby-sdk"
+Repository = "https://github.com/s-t-dev/lynxby-sdk"
+Issues = "https://github.com/s-t-dev/lynxby-sdk/issues"
+
+[tool.setuptools]
+packages = ["lynxby"]

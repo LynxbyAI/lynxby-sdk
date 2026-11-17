@@ -1,0 +1,44 @@
+{
+  "$schema": "https://www.schemastore.org/package.json",
+  "name": "@lynxby/sdk",
+  "version": "1.0.0",
+  "description": "The Lynxby API client: assistants, tasks and runs, with server-sent events and retries.",
+  "license": "MIT",
+  "type": "module",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-t-dev/lynxby-sdk.git",
+    "directory": "packages/sdk-typescript"
+  },
+  "homepage": "https://github.com/s-t-dev/lynxby-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/s-t-dev/lynxby-sdk/issues"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "src",
+    "examples",
+    "README.md"
+  ],
+  "keywords": [
+    "lynxby",
+    "sdk",
+    "assistants",
+    "sse"
+  ]
+}
