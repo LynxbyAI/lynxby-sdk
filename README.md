@@ -18,7 +18,7 @@ Both clients are generated from the API's OpenAPI document. They cannot describe
 3. Create a token, give it a name, choose an expiry and tick the scopes you need.
 4. Copy the value. It is shown once; afterwards only the first eight characters are visible.
 
-A token belongs to one person and one organisation. The person's group permissions still apply, so a token with `task.execute` only runs a task its owner may run. For a machine identity, an administrator can mint a token for a [service account](https://lynxby.com/docs/service-accounts).
+A token belongs to one person and one organisation. The person's group permissions still apply, so a token with `task.execute` only runs a task its owner may run. For a machine identity, an administrator can mint a token for a service account.
 
 Minimum scopes:
 
@@ -164,7 +164,7 @@ The full setup, including client configuration and the tool list, is in [`docs/m
 - [MCP setup](docs/mcp.md)
 - [API reference](https://lynxby.com/api/docs)
 - [OpenAPI 3.1 document](https://lynxby.com/api/v1/openapi.json)
-- [Public documentation](https://lynxby.com/reference)
+- [Lynxby API page](https://lynxby.com/api)
 
 ## Development
 
