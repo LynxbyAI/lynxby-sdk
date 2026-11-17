@@ -2,14 +2,14 @@
 
 The Lynxby API client for TypeScript. Assistants, tasks and runs, with server-sent events, retries and typed errors. No dependencies: it uses `fetch`, and Node 22.18 or newer runs the TypeScript directly.
 
-Full documentation, including where to get a token, is in the [Lynxby SDK repository](https://github.com/s-t-dev/lynxby-sdk).
+Full documentation, including where to get a token, is in the [Lynxby SDK repository](https://github.com/LynxbyAI/lynxby-sdk).
 
 The generated surface in `src/generated.ts` comes from the API's OpenAPI document. Do not edit it by hand; it is regenerated in the platform repository with `php artisan sdk:generate` and copied here. The version here always equals the API version.
 
 ## Install
 
 ```bash
-git clone https://github.com/s-t-dev/lynxby-sdk.git
+git clone https://github.com/LynxbyAI/lynxby-sdk.git
 npm install ./lynxby-sdk/packages/sdk-typescript
 ```
 
@@ -42,4 +42,4 @@ npm test          # both stub-server suites
 npm run typecheck
 ```
 
-The full contract, the scope per call, pagination and idempotency are in the [repository docs](https://github.com/s-t-dev/lynxby-sdk#readme).
+The full contract, the scope per call, pagination and idempotency are in the [repository docs](https://github.com/LynxbyAI/lynxby-sdk#readme).

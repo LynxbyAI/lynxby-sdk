@@ -45,7 +45,7 @@ export LYNXBY_BASE_URL=https://lynxby.com
 ### TypeScript
 
 ```bash
-git clone https://github.com/s-t-dev/lynxby-sdk.git
+git clone https://github.com/LynxbyAI/lynxby-sdk.git
 npm install ./lynxby-sdk/packages/sdk-typescript
 ```
 
@@ -54,7 +54,7 @@ Or install from any checkout by path, and copy `src/` into your project if you p
 ### Python
 
 ```bash
-pip install "git+https://github.com/s-t-dev/lynxby-sdk.git#subdirectory=packages/sdk-python"
+pip install "git+https://github.com/LynxbyAI/lynxby-sdk.git#subdirectory=packages/sdk-python"
 ```
 
 Or install from a checkout: `pip install ./lynxby-sdk/packages/sdk-python`. The client uses the standard library only.

@@ -17,9 +17,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/s-t-dev/lynxby-sdk"
-Repository = "https://github.com/s-t-dev/lynxby-sdk"
-Issues = "https://github.com/s-t-dev/lynxby-sdk/issues"
+Homepage = "https://github.com/LynxbyAI/lynxby-sdk"
+Repository = "https://github.com/LynxbyAI/lynxby-sdk"
+Issues = "https://github.com/LynxbyAI/lynxby-sdk/issues"
 
 [tool.setuptools]
 packages = ["lynxby"]

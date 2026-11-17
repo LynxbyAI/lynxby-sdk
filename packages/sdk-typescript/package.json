@@ -8,12 +8,12 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/s-t-dev/lynxby-sdk.git",
+    "url": "git+https://github.com/LynxbyAI/lynxby-sdk.git",
     "directory": "packages/sdk-typescript"
   },
-  "homepage": "https://github.com/s-t-dev/lynxby-sdk#readme",
+  "homepage": "https://github.com/LynxbyAI/lynxby-sdk#readme",
   "bugs": {
-    "url": "https://github.com/s-t-dev/lynxby-sdk/issues"
+    "url": "https://github.com/LynxbyAI/lynxby-sdk/issues"
   },
   "exports": {
     ".": "./src/index.ts"

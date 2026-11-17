@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-pip install "git+https://github.com/s-t-dev/lynxby-sdk.git#subdirectory=packages/sdk-python"
+pip install "git+https://github.com/LynxbyAI/lynxby-sdk.git#subdirectory=packages/sdk-python"
 ```
 
 Or from a checkout: `pip install ./lynxby-sdk/packages/sdk-python`. You can also copy the `lynxby/` directory into your project.

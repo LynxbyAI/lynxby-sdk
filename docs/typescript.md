@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-git clone https://github.com/s-t-dev/lynxby-sdk.git
+git clone https://github.com/LynxbyAI/lynxby-sdk.git
 npm install ./lynxby-sdk/packages/sdk-typescript
 ```
 
