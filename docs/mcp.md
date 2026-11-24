@@ -6,18 +6,18 @@ Lynxby speaks the Model Context Protocol at one endpoint:
 https://lynxby.com/mcp
 ```
 
-It is JSON-RPC 2.0 over streamable HTTP, one message per request. Point an MCP-capable client at it with a Lynxby token and it can ask this organisation's knowledge and run read-only connector actions.
+It is JSON-RPC 2.0 over streamable HTTP, one message per request. Point an MCP-capable client at it with a Lynxby token and it can ask this organisation's knowledge, run tasks and assistants, list and decide parked runs, propose a write and run read-only connector actions.
 
 The endpoint carries tool calls, not model traffic. A harness that keeps its own provider key never sends its prompts through Lynxby. Use the [model gateway](https://lynxby.com/api/docs) if you want those accounted for too.
 
 ## Before you connect
 
 1. Sign in at <https://lynxby.com/login>.
-2. Open **Settings → API tokens** and create a token with `knowledge.read`. Add `connector.read` if the harness should use read-only connector actions.
-3. Open **Settings → MCP exposure** and enable the tools the token should see. The default profile has `ask_lynxby` only. A tool that is not in the profile is absent from `tools/list`; it is not refused at call time.
+2. Open **Settings → API tokens** and create a token with `knowledge.read`. Add `connector.read` for read-only connector actions, `task.execute` to run tasks, `assistant.execute` to message assistants, `run.read`/`run.execute` to list and decide parked runs, and `knowledge.write` to propose a document or a change to one.
+3. Open **Settings → MCP exposure** and enable the tools the token should see. The default profile offers the three knowledge tools, the four that run work and the two that propose a write. A tool that is not in the profile is absent from `tools/list`; it is not refused at call time.
 4. Keep the token outside the client configuration file where the client supports an environment variable.
 
-The token's owner must also hold the matching permission: `document.read` for knowledge tools, `connector.read` for connector actions.
+The token's owner must also hold the matching permission: `document.read` for the knowledge tools, `task.execute` for tasks, `assistant.execute` for assistants, `run.view` to list runs and `task.execute` to decide them, and `connector.read` for connector actions.
 
 ## Test it with curl
 
@@ -133,13 +133,29 @@ If the client speaks OAuth 2.1, point it at `https://lynxby.com/.well-known/oaut
 | `ask_lynxby` | Answer a question from indexed documents, with citations | `knowledge.read` |
 | `search_knowledge` | Return the matching passages instead of an answer | `knowledge.read` |
 | `get_document` | Read one document a page at a time, redacted | `knowledge.read` |
+| `run_task` | Run one task with its form inputs and return the run, its status and its answer | `task.execute` |
+| `ask_assistant` | Send one message to an assistant and return its reply | `assistant.execute` |
+| `list_parked_runs` | List the runs waiting for a person to decide them | `run.read` |
+| `decide_run` | Approve or reject a parked run, with an optional note | `run.execute` |
+| `add_document` | Propose a new text document in a collection | `knowledge.write` |
+| `propose_context` | Propose a complete new text for a text document | `knowledge.write` |
 | `<connector>_<tool>` | Run a read-only connector action | `connector.read` |
 
 `ask_lynxby(question, project_id?)` returns `structuredContent.citations` with the segment, document, quote, score, URL and answering model. `structuredContent.actions` names the read-only connector actions the answer used.
 
 `search_knowledge(query, limit)` returns up to ten passages. `get_document(document_id, offset, limit)` returns at most 8,000 characters per page and a `next_offset`.
 
-Write, send and delete connector actions are not exposed. A tool that fails returns a normal result with `isError: true`.
+`run_task(task_id, inputs)` runs one task and returns the run, its status and its answer. `inputs` is the task's form keyed by field key; a field the form marks required has to be present.
+
+`ask_assistant(assistant_id, message, session_id?)` sends one message and returns the reply. Pass the `session_id` from the previous reply back to continue the same conversation.
+
+`list_parked_runs()` lists the runs waiting for a person, with the task, the reason and how long each has waited.
+
+`decide_run(run_id, decision, note?)` approves or rejects a parked run; `decision` is `approve` or `reject` and the note is optional. A harness cannot decide its own person's run: `decide_run` refuses it and `list_parked_runs` leaves those runs out, because approving or rejecting your own run belongs on the approval screen, to a person.
+
+`add_document(collection_id, name, content)` and `propose_context(document_id, text)` propose a new document or a new text for one. Nothing is stored or indexed; the proposal waits on the approval screen.
+
+Write, send and delete connector actions are not exposed, and neither write tool writes directly: a proposal is the only way a harness's text becomes a document. A tool that fails returns a normal result with `isError: true`.
 
 ## Limits and errors
 
